@@ -7,5 +7,7 @@ class Customer(models.Model):
     email = models.CharField(max_length=128)
     # 10 digits, optionally prepended with '1' or '+1'
     us_phone = models.CharField(max_length=12, null=True, blank=True)
+    # For promotional material and other correspondence,
+    # may differ from shipping address
     us_address = models.ForeignKey('geospatial.USAddress',
                                    on_delete=models.PROTECT)

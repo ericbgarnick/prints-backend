@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'catalog',
     'geospatial',
     'customers',
+    'orders',
 ]
 
 MIDDLEWARE = [
