@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'catalog',
     'geospatial',
-
+    'customers',
 ]
 
 MIDDLEWARE = [
