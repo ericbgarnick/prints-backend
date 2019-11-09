@@ -4,14 +4,14 @@ from django.db import models
 
 
 class Catalog(models.Model):
-    """A catalog of photos for which prints are available for purchase"""
+    """A catalog of Photos for which Prints are available for purchase"""
     title = models.CharField(max_length=256)
     publish_date = models.DateField(default=datetime.date.today)
 
 
 class Photo(models.Model):
-    """A photo that may be part of a catalog and
-    may have prints available for purchase."""
+    """A photo that may be part of a Catalog and
+    may have Prints available for purchase."""
     image = models.ImageField()
     title = models.CharField(max_length=256)
     shot_date = models.DateField()
