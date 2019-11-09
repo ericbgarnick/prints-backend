@@ -31,9 +31,9 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=256)),
                 ('shot_date', models.DateField()),
                 ('max_prints', models.PositiveIntegerField()),
-                ('catalog', models.ForeignKey(blank=True, null=True,
+                ('catalogs', models.ForeignKey(blank=True, null=True,
                                               on_delete=django.db.models.deletion.SET_NULL,
-                                              to='catalog.Catalog')),
+                                              to='catalogs.Catalog')),
             ],
         ),
     ]
