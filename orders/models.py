@@ -37,7 +37,7 @@ class Order(models.Model):
     print = models.ForeignKey(Print, on_delete=models.PROTECT)
     # SET_NULL because we may need to delete client data for
     # privacy/data control compliance but still want the order record
-    customer = models.ForeignKey('customers.Customer',
+    customer = models.ForeignKey('customers.Customer', null=True, blank=True,
                                  on_delete=models.SET_NULL)
     shipping_address = models.ForeignKey('geospatial.USAddress',
                                          on_delete=models.PROTECT)
