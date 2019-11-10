@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Catalog(models.Model):
-    """A catalogs of Photos for which Prints are available for purchase"""
+    """A catalog of Photos for which Prints are available for purchase"""
     title = models.CharField(max_length=256)
     publish_date = models.DateField(default=datetime.date.today)
 

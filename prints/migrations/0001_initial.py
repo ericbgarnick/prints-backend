@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('catalogs', '0001_initial'),
+        ('catalog', '0001_initial'),
     ]
 
     operations = [
@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                                         serialize=False, verbose_name='ID')),
                 ('print_number', models.PositiveIntegerField()),
                 ('photo', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT,
-                                            to='catalogs.Photo')),
+                                            to='catalog.Photo')),
                 ('size_info', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT,
                                                 to='prints.PrintSizeInfo')),
             ],

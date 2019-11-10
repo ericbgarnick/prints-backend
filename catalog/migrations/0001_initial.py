@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
                 ('max_prints', models.PositiveIntegerField()),
                 ('catalog', models.ForeignKey(blank=True, null=True,
                                               on_delete=django.db.models.deletion.SET_NULL,
-                                              to='catalogs.Catalog')),
+                                              to='catalog.Catalog')),
             ],
         ),
     ]

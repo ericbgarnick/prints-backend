@@ -21,5 +21,5 @@ class Print(models.Model):
     """A print of a Photo that has been purchased"""
     # size_info and photo should always exist if a print exists
     size_info = models.ForeignKey(PrintSizeInfo, on_delete=models.PROTECT)
-    photo = models.ForeignKey('catalogs.Photo', on_delete=models.PROTECT)
+    photo = models.ForeignKey('catalog.Photo', on_delete=models.PROTECT)
     print_number = models.PositiveIntegerField()
