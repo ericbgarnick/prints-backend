@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True,
                                         serialize=False, verbose_name='ID')),
                 ('street', models.CharField(max_length=128)),
-                ('unit', models.CharField(max_length=32)),
+                ('unit', models.CharField(max_length=32, null=True, blank=True)),
                 ('city', models.CharField(max_length=64)),
                 ('state', models.CharField(choices=[
                     ('AL', 'AL'), ('AK', 'AK'), ('AZ', 'AZ'), ('AR', 'AR'),
