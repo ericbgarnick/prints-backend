@@ -12,7 +12,8 @@ class Catalog(models.Model):
 class Photo(models.Model):
     """A photo that may be part of a Catalog and
     may have Prints available for purchase."""
-    image = models.ImageField()
+    image_id = models.PositiveIntegerField(primary_key=True)
+    image_location = models.ImageField(upload_to='photos')
     title = models.CharField(max_length=256)
     shot_date = models.DateField()
     max_prints = models.PositiveIntegerField()

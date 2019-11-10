@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from prints.models import PrintSize, PrintSizeInfo
+from prints.models import PrintSizeInfo
 from prints.serializers import PrintSizeInfoSerializer
 from prints.tests.helpers import create_print_size_info_data
 
