@@ -15,9 +15,6 @@ class PrintSizeInfo(models.Model):
     # If no ship price, the print should not be available for sale
     ship_price_cents = models.PositiveIntegerField(null=True, blank=True)
     size = EnumField(PrintSize, max_length=16)
-    @property
-    def size_abbr(self) -> str:
-        return self.size.value[0]
 
 
 class Print(models.Model):
