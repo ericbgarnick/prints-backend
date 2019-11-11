@@ -2,9 +2,7 @@ import datetime
 import os
 from typing import List, Dict
 
-from django.conf import settings
-
-from catalog.models import Photo
+from photos.models import Photo
 
 
 # TODO: consolidate duplicated test helpers logic

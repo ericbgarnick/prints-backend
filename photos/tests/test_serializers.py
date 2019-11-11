@@ -1,4 +1,3 @@
-import datetime
 import os
 from collections import OrderedDict
 from typing import List
@@ -6,9 +5,9 @@ from typing import List
 from django.conf import settings
 from django.test import TestCase
 
-from catalog.models import Photo, Catalog
-from catalog.serializers import PhotoSerializer, CatalogSerializer
-from catalog.tests.helpers import create_photo_data
+from photos.models import Photo
+from photos.serializers import PhotoSerializer
+from photos.tests.helpers import create_photo_data
 
 
 class TestCatalogSerializers(TestCase):
@@ -21,7 +20,6 @@ class TestCatalogSerializers(TestCase):
     @classmethod
     def tearDownClass(cls):
         Photo.objects.all().delete()
-        Catalog.objects.all().delete()
         super().tearDownClass()
 
     def photo_data_check(self, received_data: List[OrderedDict]):
@@ -43,21 +41,3 @@ class TestCatalogSerializers(TestCase):
 
         # Compare with test data
         self.photo_data_check(serialized_data)
-
-    def test_serialize_catalog(self):
-        """Assert Catalog model instances are serialized as expected"""
-        # Get serialized data
-        catalog_title = "Test Catalog"
-        catalog_publish = datetime.date(year=2000, month=1, day=1)
-        catalog = Catalog.objects.create(title=catalog_title,
-                                         publish_date=catalog_publish)
-        Photo.objects.all().update(catalog=catalog)
-        serialized_data = CatalogSerializer(catalog).data
-
-        # Compare with test data
-        self.assertSetEqual({"title", "publish_date", "photos"},
-                            set(serialized_data.keys()))
-        self.assertEqual(serialized_data['title'], catalog_title)
-        self.assertEqual(serialized_data['publish_date'],
-                         catalog_publish.strftime('%Y-%m-%d'))
-        self.photo_data_check(serialized_data['photos'])

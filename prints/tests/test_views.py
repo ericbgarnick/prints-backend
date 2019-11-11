@@ -35,4 +35,3 @@ class TestPrintsViews(TestCase):
             response = PrintsMeta().get(request)
             response_mock.assert_called_with(serializer.data)
             self.assertIsInstance(response, mock.MagicMock)
-            self.assertEqual(response_mock._mock_name, 'Response')

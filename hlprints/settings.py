@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'rest_framework',
-    'catalog',
+    'photos',
     'geospatial',
     'customers',
     'orders',
