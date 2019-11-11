@@ -21,6 +21,7 @@ class TestCatalogSerializers(TestCase):
     @classmethod
     def tearDownClass(cls):
         Photo.objects.all().delete()
+        Catalog.objects.all().delete()
         super().tearDownClass()
 
     def photo_data_check(self, received_data: List[OrderedDict]):

@@ -22,7 +22,7 @@ class TestPrintsViews(TestCase):
         super().tearDownClass()
 
     def test_get_prints_meta(self):
-        """Assert the expected Response is created and returned"""
+        """Assert the prints meta data Response is created and returned"""
         prints_meta_data = PrintSizeInfo.objects.all() \
             .order_by('base_price_cents')
         serializer = PrintSizeInfoSerializer(prints_meta_data, many=True)

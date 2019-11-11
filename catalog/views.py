@@ -31,9 +31,9 @@ class CatalogPhotos(APIView):
     paginator = PageNumberPagination()
 
     def get(self, request):
-        catalog_data = Catalog.objects.all().order_by('publish_date').last()
-        if catalog_data:
-            page = self.paginator.paginate_queryset(catalog_data, request)
+        catalog = Catalog.objects.all().order_by('publish_date').last()
+        if catalog:
+            page = self.paginator.paginate_queryset(catalog, request)
             serializer = CatalogSerializer(page)
             return self.paginator.get_paginated_response(serializer.data)
         else:
