@@ -1,5 +1,11 @@
+import json
+
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from catalog.models import Catalog
+from catalog.serializers import CatalogSerializer
 
 
 class CatalogPhotos(APIView):
@@ -25,8 +31,10 @@ class CatalogPhotos(APIView):
     paginator = PageNumberPagination()
 
     def get(self, request):
-        prints_meta_data = PrintSizeInfo.objects.all() \
-            .order_by('base_price_cents')
-        page = self.paginator.paginate_queryset(prints_meta_data, request)
-        serializer = PrintSizeInfoSerializer(page, many=True)
-        return self.paginator.get_paginated_response(serializer.data)
+        catalog_data = Catalog.objects.all().order_by('publish_date').last()
+        if catalog_data:
+            page = self.paginator.paginate_queryset(catalog_data, request)
+            serializer = CatalogSerializer(page)
+            return self.paginator.get_paginated_response(serializer.data)
+        else:
+            return Response()

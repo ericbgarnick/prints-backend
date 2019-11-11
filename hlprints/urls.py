@@ -21,7 +21,8 @@ from django.views.static import serve
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
-    path(r'prints/', include('prints.urls'))
+    path(r'prints/', include('prints.urls')),
+    path(r'catalog/', include('catalog.urls')),
 ]
 
 if settings.DEBUG:
