@@ -36,7 +36,7 @@ class TestCustomerSerializers(TestCase):
         self.assertDictEqual(serialized_data, no_address_data)
         self.assertDictEqual(address_data, self.address_data)
 
-    def test_create_address(self):
+    def test_create_customer(self):
         """Assert the CustomerSerializer successfully creates a new instance"""
         cust_with_addr_data = {k: v for k, v in self.customer_data.items()}
         cust_with_addr_data["address"] = self.address_data

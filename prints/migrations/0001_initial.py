@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                                         serialize=False, verbose_name='ID')),
                 ('print_number', models.PositiveIntegerField()),
                 ('order', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT,
-                                            to='orders.Order')),
+                                            null=True, to='orders.Order')),
                 ('photo', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT,
                                             to='photos.Photo')),
                 ('size_info', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT,
