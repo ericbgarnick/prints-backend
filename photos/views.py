@@ -23,15 +23,15 @@ class PhotoCatalog(APIView):
     ]
     Paginates response format:
     {
-        "count": <int>,
-        "next": <str>,
-        "previous": <str>
+        "count": <int (total number of records available)>,
+        "next": <str (url for next page, or null)>,
+        "previous": <str (url for previous page, or null)>
         “images”: [
             {
                 "image_id": <int>,
                 "title": <str>,
-                "file_location": <str: path/to/file>,
-                "num_prints": <int>,
+                "file_location": <str: /relative/path/to/file>,
+                "max_prints": <int>,
                 "shot_date": <date: YYYY-MM-DD>
             }
         ]
