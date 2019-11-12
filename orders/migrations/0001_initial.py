@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                                                on_delete=django.db.models.deletion.SET_NULL,
                                                to='customers.Customer')),
                 ('shipping_address', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT,
-                                                       to='geospatial.USAddress')),
+                                                       to='geospatial.Address')),
             ],
         ),
     ]

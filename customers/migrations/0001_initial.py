@@ -19,8 +19,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('full_name', models.CharField(max_length=128)),
                 ('email', models.CharField(max_length=128)),
-                ('us_phone', models.CharField(blank=True, max_length=12, null=True)),
-                ('us_address', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='geospatial.USAddress')),
+                ('phone', models.CharField(blank=True, max_length=12, null=True)),
+                ('address', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='geospatial.Address')),
             ],
         ),
     ]

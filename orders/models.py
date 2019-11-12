@@ -15,6 +15,6 @@ class Order(models.Model):
     # privacy/data control compliance but still want the order record
     customer = models.ForeignKey('customers.Customer', null=True, blank=True,
                                  on_delete=models.SET_NULL)
-    shipping_address = models.ForeignKey('geospatial.USAddress',
+    shipping_address = models.ForeignKey('geospatial.Address',
                                          on_delete=models.PROTECT)
     order_status = EnumField(OrderStatus, max_length=16)

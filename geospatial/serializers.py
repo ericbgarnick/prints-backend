@@ -1,9 +1,9 @@
 from rest_framework import serializers
 
-from geospatial.models import USAddress
+from geospatial.models import Address
 
 
-class USAddressSerializer(serializers.ModelSerializer):
+class AddressSerializer(serializers.ModelSerializer):
     class Meta:
-        model = USAddress
+        model = Address
         fields = ['street', 'unit', 'city', 'state', 'postal_code']
