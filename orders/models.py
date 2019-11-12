@@ -11,7 +11,6 @@ class OrderStatus(Enum):
 
 
 class Order(models.Model):
-    print = models.ForeignKey('prints.Print', on_delete=models.PROTECT)
     # SET_NULL because we may need to delete client data for
     # privacy/data control compliance but still want the order record
     customer = models.ForeignKey('customers.Customer', null=True, blank=True,

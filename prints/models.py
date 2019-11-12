@@ -18,7 +18,8 @@ class PrintSizeInfo(models.Model):
 
 
 class Print(models.Model):
-    """A print of a Photo that has been purchased"""
+    """A purchased print of a Photo"""
+    order = models.ForeignKey('orders.Order', on_delete=models.PROTECT)
     # size_info and photo should always exist if a print exists
     size_info = models.ForeignKey(PrintSizeInfo, on_delete=models.PROTECT)
     photo = models.ForeignKey('photos.Photo', on_delete=models.PROTECT)
