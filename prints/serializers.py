@@ -1,18 +1,19 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
+from rest_framework.serializers import BaseSerializer
 
 from photos.models import Photo
 from prints.models import PrintSizeInfo, PrintSize, Print
 
 
 class PrintSizeInfoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PrintSizeInfo
-        fields = ['base_price_cents', 'ship_price_cents', 'size']
-
     size = serializers.ChoiceField(
         choices=[ps[1] for ps in PrintSize.choices()]
     )
+
+    class Meta:
+        model = PrintSizeInfo
+        fields = ['base_price_cents', 'ship_price_cents', 'size']
 
 
 class PrintSerializer(serializers.ModelSerializer):
@@ -28,7 +29,13 @@ class PrintSerializer(serializers.ModelSerializer):
         self._errors = []
         self._validated_data = self.initial_data
 
-        if not PrintSizeInfo.objects.filter(size=PrintSize[size.upper()]).exists():
+        try:
+            print_size = PrintSize[size.upper()]
+        except KeyError:
+            print_size = None
+            self._errors.append(f"No PrintSize found for size {size}")
+
+        if not PrintSizeInfo.objects.filter(size=print_size).exists():
             self._errors.append(f"No PrintSizeInfo found for size {size}")
         if not Photo.objects.filter(image_id=image_id).exists():
             self._errors.append(f"No photo found with image_id {image_id}")
@@ -48,3 +55,11 @@ class PrintSerializer(serializers.ModelSerializer):
         # TODO: Validate that the max number of prints is not exceeded
         return Print.objects.create(size_info=size_info, photo=photo,
                                     print_number=num_prints + 1)
+
+    # TODO: This is a hack because the inherited errors property was failing - find proper solution
+    @property
+    def errors(self):
+        if not hasattr(self, '_errors'):
+            msg = 'You must call `.is_valid()` before accessing `.errors`.'
+            raise AssertionError(msg)
+        return self._errors
