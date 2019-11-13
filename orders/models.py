@@ -18,3 +18,26 @@ class Order(models.Model):
     shipping_address = models.ForeignKey('geospatial.Address',
                                          on_delete=models.PROTECT)
     order_status = EnumField(OrderStatus, max_length=16)
+
+
+class PaymentMethod(Enum):
+    CREDIT = "CREDIT"
+    DEBIT = "DEBIT"
+
+
+class CreditNetwork(Enum):
+    VISA = "VISA"
+    MASTERCARD = "MASTERCARD"
+    DISCOVER = "DISCOVER"
+    AMEX = "AMEX"
+
+
+class Payment(models.Model):
+    method = EnumField(PaymentMethod, max_length=8)
+    credit_network = EnumField(CreditNetwork, max_length=16, null=True)
+    account_number = models.CharField(max_length=20)
+    card_expiration = models.CharField(max_length=6)
+    card_cvv = models.CharField(max_length=8)
+    billing_name = models.CharField(max_length=128)
+    billing_address = models.ForeignKey('geospatial.Address',
+                                        on_delete=models.PROTECT)
