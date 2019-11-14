@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
-from rest_framework.serializers import BaseSerializer
 
 from photos.models import Photo
 from prints.models import PrintSizeInfo, PrintSize, Print
