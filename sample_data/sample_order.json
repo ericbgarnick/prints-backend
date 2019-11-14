@@ -1,0 +1,50 @@
+{
+  "customer": {
+    "full_name": "Eric Garnick",
+    "email": "eric@email.com",
+    "phone": "+12223334444",
+    "address": {
+      "street": "123 Main St",
+      "unit": "1A",
+      "city": "Seattle",
+      "state": "WA",
+      "postal_code": "48105"
+    }
+  },
+  "shipping_address": {
+    "street": "123 Main St",
+    "unit": "1A",
+    "city": "Seattle",
+    "state": "WA",
+    "postal_code": "48105"
+  },
+  "prints": [
+    {
+      "image_id": 1,
+      "size": "SMALL"
+    },
+    {
+      "image_id": 2,
+      "size": "MEDIUM"
+    },
+    {
+      "image_id": 3,
+      "size": "LARGE"
+    }
+  ],
+  "payment": {
+    "method": "CREDIT",
+    "credit_network": "VISA",
+    "account_number": "1234123412341234",
+    "card_expiration": "012020",
+    "card_cvv": "0022",
+    "billing_name": "Eric Garnick",
+    "billing_address": {
+      "street": "456 Main St",
+      "unit": "5C",
+      "city": "Mountain View",
+      "state": "CA",
+      "postal_code": "94040"
+    }
+  }
+}

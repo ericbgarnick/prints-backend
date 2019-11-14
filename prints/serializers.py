@@ -17,6 +17,9 @@ class PrintSizeInfoSerializer(serializers.ModelSerializer):
 
 class PrintSerializer(serializers.ModelSerializer):
     """Write-only"""
+    size = serializers.CharField(source="size_info__size")
+    image_id = serializers.IntegerField(source="photo__image_id")
+
     class Meta:
         model = Print
         fields = ['size', 'image_id']
@@ -45,9 +48,10 @@ class PrintSerializer(serializers.ModelSerializer):
         return not bool(self._errors)
 
     def create(self, validated_data):
-        size = validated_data['size']
+        print(validated_data)
+        size = validated_data['size_info__size']
         size_info = PrintSizeInfo.objects.get(size=PrintSize[size.upper()])
-        image_id = validated_data['image_id']
+        image_id = validated_data['photo__image_id']
         # TODO: Validate that this image_id is valid
         photo = Photo.objects.get(image_id=image_id)
         num_prints = Print.objects.filter(photo=photo).count()

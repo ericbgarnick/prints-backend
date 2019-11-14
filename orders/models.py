@@ -17,6 +17,7 @@ class Order(models.Model):
                                  on_delete=models.SET_NULL)
     shipping_address = models.ForeignKey('geospatial.Address',
                                          on_delete=models.PROTECT)
+    payment = models.ForeignKey('orders.Payment', on_delete=models.PROTECT)
     order_status = EnumField(OrderStatus, max_length=16)
 
 
