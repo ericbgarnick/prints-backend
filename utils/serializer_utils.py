@@ -47,8 +47,10 @@ def check_str_length(to_check: str, model: Type[models.Model],
     SIDE-EFFECT: possibly update errors_list
     """
     max_len = model._meta.get_field(field_name).max_length
-    if len(to_check) <= max_len:
+    if to_check and len(to_check) <= max_len:
         return to_check
+    elif not to_check:
+        errors_list.append(f"{field_name} cannot be empty")
     else:
-        errors_list.append(f"{field_name} {to_check} may have at most "
+        errors_list.append(f"{field_name} \"{to_check}\" may have at most "
                            f"{max_len} characters")
