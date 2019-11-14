@@ -5,7 +5,7 @@ from enumfields import Enum
 
 
 def enum_from_str(str_name: str, enumeration: Type[Enum],
-                  errors_list: List[str], ) -> Optional[Enum]:
+                  errors_list: List[str] = None) -> Optional[Enum]:
     """
     Return the enum value named by str_name for enumeration, if str_name is
     valid.  Otherwise add error message to errors_list and return None
@@ -16,7 +16,8 @@ def enum_from_str(str_name: str, enumeration: Type[Enum],
     try:
         result = enumeration[str_name.upper()]
     except KeyError:
-        errors_list.append(f"No {enumeration.__name__} found for {str_name}")
+        if errors_list is not None:
+            errors_list.append(f"No {enumeration.__name__} found for {str_name}")
     return result
 
 
