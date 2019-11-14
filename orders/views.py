@@ -6,6 +6,7 @@ from customers.serializers import CustomerSerializer
 from geospatial.serializers import AddressSerializer
 from orders.models import Order, OrderStatus
 from orders.serializers import PaymentSerializer
+from prints.models import Print
 from prints.serializers import PrintSerializer
 
 
@@ -36,6 +37,7 @@ class PrintOrder(APIView):
             order = Order.objects.create(
                 customer=customer, shipping_address=address,
                 payment=payment, order_status=OrderStatus.SUBMITTED)
-            prints.update(order=order)
+            print_ids = [p.id for p in prints]
+            Print.objects.filter(id__in=print_ids).update(order=order)
         response_status = 200 if good_data else 422
         return Response(status=response_status)
