@@ -1,8 +1,10 @@
+import pycountry
 import us
 from django.db import models
 
 
 US_STATE_ABBR = [(state.abbr, state.abbr) for state in us.states.STATES]
+COUNTRY_NAMES = sorted([(c.name, c.name) for c in pycountry.countries])
 
 
 class Address(models.Model):
@@ -11,3 +13,4 @@ class Address(models.Model):
     city = models.CharField(max_length=64)
     state = models.CharField(choices=US_STATE_ABBR, max_length=2)
     postal_code = models.CharField(max_length=10)
+    country = models.CharField(choices=COUNTRY_NAMES, max_length=128)

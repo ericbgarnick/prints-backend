@@ -6,7 +6,7 @@ from geospatial.models import Address
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
-        fields = ['line1', 'line2', 'city', 'state', 'postal_code']
+        fields = ['line1', 'line2', 'city', 'state', 'postal_code', 'country']
 
     def create(self, validated_data):
         # Don't create duplicates
