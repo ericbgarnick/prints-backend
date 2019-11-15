@@ -22,6 +22,7 @@ from django.views.static import serve
 urlpatterns = [
     path(r'admin/', admin.site.urls),
     path(r'prints/', include('prints.urls')),
+    path(r'geospatial/', include('geospatial.urls')),
     path(r'photos/', include('photos.urls')),
     path(r'orders/', include('orders.urls'))
 ]
