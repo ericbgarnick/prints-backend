@@ -20,7 +20,8 @@ class TestOrdersSerializers(TestCase):
         cls.payment_data = {'method': "Credit", 'credit_network': 'Visa',
                             'account_number': '0123456789012345',
                             'card_expiration': '012020',
-                            'card_cvv': '1234', 'billing_name': 'Account Holder',
+                            'card_cvv': '1234', 'billing_first_name': 'Account',
+                            'billing_last_name': 'Holder',
                             'billing_address': cls.addr}
         cls.payment = Payment.objects.create(**cls.payment_data)
 

@@ -39,6 +39,7 @@ class Payment(models.Model):
     account_number = models.CharField(max_length=20)
     card_expiration = models.CharField(max_length=6)  # MMYYYY
     card_cvv = models.CharField(max_length=8)         # Char for leading 0's
-    billing_name = models.CharField(max_length=128)
+    billing_first_name = models.CharField(max_length=64)
+    billing_last_name = models.CharField(max_length=64)
     billing_address = models.ForeignKey('geospatial.Address',
                                         on_delete=models.PROTECT)

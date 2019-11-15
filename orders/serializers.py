@@ -20,8 +20,8 @@ class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
         fields = ['method', 'credit_network', 'account_number',
-                  'card_expiration', 'card_cvv', 'billing_name',
-                  'billing_address']
+                  'card_expiration', 'card_cvv', 'billing_first_name',
+                  'billing_last_name', 'billing_address']
 
     def is_valid(self, raise_exception=False):
         method = self.initial_data.get('method')
@@ -29,7 +29,8 @@ class PaymentSerializer(serializers.ModelSerializer):
         acct_num = self.initial_data.get('account_number')
         card_exp = self.initial_data.get('card_expiration')
         card_cvv = self.initial_data.get('card_cvv')
-        billing_name = self.initial_data.get('billing_name')
+        billing_first_name = self.initial_data.get('billing_first_name')
+        billing_last_name = self.initial_data.get('billing_last_name')
         billing_addr = self.initial_data.get('billing_address')
 
         # These instance vars must be created here
@@ -41,7 +42,8 @@ class PaymentSerializer(serializers.ModelSerializer):
         check_numeric_string(acct_num, Payment, 'account_number', self._errors)
         check_numeric_string(card_exp, Payment, 'card_expiration', self._errors)
         check_numeric_string(card_cvv, Payment, 'card_cvv', self._errors)
-        check_str_length(billing_name, Payment, 'billing_name', self._errors)
+        check_str_length(billing_first_name, Payment, 'billing_first_name', self._errors)
+        check_str_length(billing_last_name, Payment, 'billing_last_name', self._errors)
         addr_serializer = AddressSerializer(data=billing_addr)
         if not addr_serializer.is_valid():
             self._errors.append(f"Invalid address data {billing_addr}")

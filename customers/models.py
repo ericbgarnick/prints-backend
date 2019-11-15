@@ -2,7 +2,8 @@ from django.db import models
 
 
 class Customer(models.Model):
-    full_name = models.CharField(max_length=128)
+    first_name = models.CharField(max_length=64)
+    last_name = models.CharField(max_length=64)
     # Non-nullable: we need to be able to contact customers about their orders
     email = models.CharField(max_length=128)
     # 10 digits, optionally prepended with '1' or '+1'

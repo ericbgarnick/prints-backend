@@ -10,7 +10,7 @@ class CustomerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Customer
-        fields = ['full_name', 'email', 'phone', 'address']
+        fields = ['first_name', 'last_name', 'email', 'phone', 'address']
 
     def create(self, validated_data):
         address_data = validated_data.pop('address')

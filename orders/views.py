@@ -15,6 +15,10 @@ from prints.serializers import PrintSerializer
 
 class PrintOrder(APIView):
     """Receives orders for prints and returns a billing summary"""
+    def get(self, request):
+        """Avoid error on DRF default page"""
+        return Response()
+
     def post(self, request):
         data = JSONParser().parse(request)
         customer_data = data.get("customer")
@@ -74,7 +78,8 @@ class PrintOrder(APIView):
         billing_summary["payment_method"] = payment_data["method"]
         acct_num = payment_data["account_number"]
         billing_summary["payment_account_end"] = acct_num[-4:]
-        billing_summary["billing_name"] = payment_data["billing_name"]
+        billing_summary["billing_first_name"] = payment_data["billing_first_name"]
+        billing_summary["billing_last_name"] = payment_data["billing_last_name"]
         billing_summary["billing_address"] = payment_data["billing_address"]
 
     @staticmethod

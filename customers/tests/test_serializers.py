@@ -13,7 +13,8 @@ class TestCustomerSerializers(TestCase):
                             "unit": "apt 3", "city": "Sunnyvale",
                             "state": "CA", "postal_code": "94085"}
         cls.usa = Address.objects.create(**cls.address_data)
-        cls.customer_data = {"full_name": "Test McTest",
+        cls.customer_data = {"first_name": "Test",
+                             "last_name": "McTest",
                              "email": "test@test.com",
                              "phone": "+13334445555",
                              "address": cls.usa}
