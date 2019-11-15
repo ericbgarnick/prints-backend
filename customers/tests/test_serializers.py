@@ -2,23 +2,18 @@ from django.test import TestCase
 
 from customers.models import Customer
 from customers.serializers import CustomerSerializer
+from customers.tests.helpers import create_customer_data
 from geospatial.models import Address
+from geospatial.tests.helpers import create_address_data
 
 
 class TestCustomerSerializers(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.address_data = {"line1": "123 main st",
-                            "line2": "apt 3", "city": "Sunnyvale",
-                            "state": "CA", "postal_code": "94085",
-                            "country": "United States"}
+        cls.address_data = create_address_data()
         cls.usa = Address.objects.create(**cls.address_data)
-        cls.customer_data = {"first_name": "Test",
-                             "last_name": "McTest",
-                             "email": "test@test.com",
-                             "phone": "+13334445555",
-                             "address": cls.usa}
+        cls.customer_data = create_customer_data(cls.usa)
         cls.customer = Customer.objects.create(**cls.customer_data)
 
     @classmethod

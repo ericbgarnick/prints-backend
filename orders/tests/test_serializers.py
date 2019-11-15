@@ -1,11 +1,13 @@
 from django.test import TestCase
 
+from geospatial.tests.helpers import create_address_data
 from orders.models import Payment, PaymentMethod, CreditNetwork
 from orders.serializers import PaymentSerializer
 from geospatial.models import Address
 
 
 # TODO: Abstract duplicated logic from TestCustomerSerializers
+from orders.tests.helpers import create_payment_data
 from utils.serializer_utils import enum_from_str
 
 
@@ -13,17 +15,9 @@ class TestOrdersSerializers(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.address_data = {"line1": "123 main st",
-                            "line2": "apt 3", "city": "Sunnyvale",
-                            "state": "CA", "postal_code": "94085",
-                            "country": "United States"}
+        cls.address_data = create_address_data()
         cls.addr = Address.objects.create(**cls.address_data)
-        cls.payment_data = {'method': "Credit", 'credit_network': 'Visa',
-                            'account_number': '0123456789012345',
-                            'card_expiration': '012020',
-                            'card_cvv': '1234', 'billing_first_name': 'Account',
-                            'billing_last_name': 'Holder',
-                            'billing_address': cls.addr}
+        cls.payment_data = create_payment_data(cls.addr)
         cls.payment = Payment.objects.create(**cls.payment_data)
 
     @classmethod

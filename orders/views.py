@@ -58,6 +58,7 @@ class PrintOrder(APIView):
 
     @staticmethod
     def create_order(serializers: Dict[str, ModelSerializer]) -> Order:
+        """Create order from chaos (and customer, address, payment instances)"""
         customer = serializers["customer"].save()
         address = serializers["address"].save()
         payment = serializers["payment"].save()
@@ -68,6 +69,7 @@ class PrintOrder(APIView):
     @staticmethod
     def create_prints_for_order(serializers: Dict[str, ModelSerializer],
                                 order: Order):
+        """Create prints with FK reference to order argument"""
         prints = serializers["prints"].save()
         print_ids = [p.id for p in prints]
         Print.objects.filter(id__in=print_ids).update(order=order)
