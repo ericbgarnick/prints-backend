@@ -8,11 +8,11 @@ from prints.serializers import PrintSizeInfoSerializer
 class PrintsMeta(APIView):
     """
     Return meta data about prints:
-    "print_size_info": [
+    [
         {
             "size_name": <str>,
             "base_price_cents": <int>,
-            "shipping_cost_cents": <int>
+            "ship_price_cents": <int>
         }
     ]
     """

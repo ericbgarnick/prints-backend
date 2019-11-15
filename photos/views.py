@@ -21,12 +21,12 @@ class PhotoCatalog(APIView):
             "shot_date": <date: YYYY-MM-DD>
         }
     ]
-    Paginates response format:
+    Paginated response format:
     {
         "count": <int (total number of records available)>,
         "next": <str (url for next page, or null)>,
         "previous": <str (url for previous page, or null)>
-        “images”: [
+        "results": [
             {
                 "image_id": <int>,
                 "title": <str>,

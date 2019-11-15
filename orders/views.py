@@ -14,7 +14,65 @@ from prints.serializers import PrintSerializer
 
 
 class PrintOrder(APIView):
-    """Receives orders for prints and returns a billing summary"""
+    """
+    Receives orders for prints and returns a billing summary.
+
+    Request format:
+    {
+        "customer": {
+            "first_name": <str>,
+            "last_name": <str>,
+            "email": <str>,
+            "phone": <str/null>,
+            "address": <address**/null>
+        },
+        "shipping_address": <address**>,
+        "prints": [
+            {
+                "image_id": <int>,
+                "size": <SMALL/MEDIUM/LARGE>
+            }
+        ],
+        "payment": {
+            "method": <CREDIT/DEBIT>,
+            "credit_network": <VISA/MASTERCARD/DISCOVER/AMEX>,
+            "account_number": <str>,
+            "card_expiration": <str: MMYYYY>,
+            "card_cvv": <str>,
+            "billing_first_name": <str>,
+            "billing_last_name": <str>,
+            "billing_address": <address**>
+        }
+    }
+
+    Response format:
+    {
+        "order_num": <int>,
+        "billing_summary": {
+            "prints": [
+                "image_title": <str>,
+                "size": <SMALL/MEDIUM/LARGE>,
+                "base_price_cents": <int>,
+                "ship_price_cents": <int>
+            ],
+            "payment_method": <CREDIT/DEBIT>,
+            "payment_account_end": <int>,  # last 4 digits of account number,
+            "billing_first_name": <str>,
+            "billing_last_name": <str>,
+            "billing_address": <address**>,
+            "shipping_address": <address**>
+        }
+    }
+
+    ** address: {
+        "line1": <str>,
+        "line2": <str/null>,
+        "city": <str>,
+        "state": <str>,
+        "postal_code": <str>,
+    }
+
+    """
     def get(self, request):
         """Avoid error on DRF default page"""
         return Response()
@@ -52,7 +110,7 @@ class PrintOrder(APIView):
             ret_data["order_num"] = order.id
             ret_data["billing_summary"] = billing_summary
 
-        response_status = 200 if good_data else 422
+        response_status = 201 if good_data else 422
 
         return Response(data=ret_data, status=response_status)
 
