@@ -5,16 +5,16 @@
     "email": "eric@email.com",
     "phone": "+12223334444",
     "address": {
-      "street": "123 Main St",
-      "unit": "1A",
+      "line1": "123 Main St",
+      "line2": "1A",
       "city": "Seattle",
       "state": "WA",
       "postal_code": "48105"
     }
   },
   "shipping_address": {
-    "street": "123 Main St",
-    "unit": "1A",
+    "line1": "123 Main St",
+    "line2": "1A",
     "city": "Seattle",
     "state": "WA",
     "postal_code": "48105"
@@ -42,8 +42,8 @@
     "billing_first_name": "Eric",
     "billing_last_name": "Garnick",
     "billing_address": {
-      "street": "456 Main St",
-      "unit": "5C",
+      "line1": "456 Main St",
+      "line2": "5C",
       "city": "Mountain View",
       "state": "CA",
       "postal_code": "94040"

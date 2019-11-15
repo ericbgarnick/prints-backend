@@ -8,8 +8,8 @@ class TestGeospatialSerializers(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.address_data = {"street": "123 main st",
-                            "unit": "apt 3", "city": "Sunnyvale",
+        cls.address_data = {"line1": "123 main st",
+                            "line2": "apt 3", "city": "Sunnyvale",
                             "state": "CA", "postal_code": "94085"}
         cls.usa = Address.objects.create(**cls.address_data)
 
