@@ -45,7 +45,7 @@ class TestPrintsSerializers(TestCase):
         photo = Photo.objects.create(image_id=1, image_location='photos',
                                      title='photo1', shot_date=shot_date,
                                      max_prints=10)
-        print_data = {'size': size, 'image_id': photo.image_id}
+        print_data = {'size_info__size': size, 'photo__image_id': photo.image_id}
         serializer = PrintSerializer(data=print_data)
         self.assertTrue(serializer.is_valid())
         serializer.save()
@@ -62,7 +62,8 @@ class TestPrintsSerializers(TestCase):
                                      title='photo1', shot_date=shot_date,
                                      max_prints=10)
         # Bad size: "MEDIUM_"
-        print_data = {'size': size + "_", 'image_id': photo.image_id}
+        print_data = {'size_info__size': size + "_",
+                      'photo__image_id': photo.image_id}
         serializer = PrintSerializer(data=print_data)
 
         self.assertFalse(serializer.is_valid())

@@ -25,8 +25,8 @@ class PrintSerializer(serializers.ModelSerializer):
         fields = ['size', 'image_id']
 
     def is_valid(self, raise_exception=False):
-        size = self.initial_data.get('size')
-        image_id = self.initial_data.get('image_id')
+        size = self.initial_data.get('size_info__size')
+        image_id = self.initial_data.get('photo__image_id')
         # These instance vars must be created here
         self._errors = []
         self._validated_data = self.initial_data
@@ -48,7 +48,6 @@ class PrintSerializer(serializers.ModelSerializer):
         return not bool(self._errors)
 
     def create(self, validated_data):
-        print(validated_data)
         size = validated_data['size_info__size']
         size_info = PrintSizeInfo.objects.get(size=PrintSize[size.upper()])
         image_id = validated_data['photo__image_id']

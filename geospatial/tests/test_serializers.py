@@ -23,12 +23,21 @@ class TestGeospatialSerializers(TestCase):
         serializer = AddressSerializer(self.usa)
         self.assertDictEqual(serializer.data, self.address_data)
 
-    def test_create_address(self):
-        """Assert the AddressSerializer successfully creates a new instance"""
+    def test_create_address_new_data(self):
+        """Assert the AddressSerializer successfully creates a new
+        instance when address data does not match an existing address"""
+        new_address = {k: v for k, v in self.address_data.items()}
+        new_address["city"] = "Mountain View"
+        serializer = AddressSerializer(data=new_address)
+        self.assertTrue(serializer.is_valid())
+        serializer.save()
+        self.assertEqual(Address.objects.filter(**self.address_data).count(), 1)
+        self.assertEqual(Address.objects.filter(**new_address).count(), 1)
+
+    def test_dont_create_address_old_data(self):
+        """Assert the AddressSerializer does not create a new
+        instance when address data matches an existing address"""
         serializer = AddressSerializer(data=self.address_data)
         self.assertTrue(serializer.is_valid())
         serializer.save()
-        self.assertEqual(Address.objects.filter(**self.address_data).count(), 2)
-
-
-
+        self.assertEqual(Address.objects.filter(**self.address_data).count(), 1)
