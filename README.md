@@ -191,3 +191,14 @@ summary data.  Sample request data can be found in sample_data/sample_order.json
     }
 }
 ```
+
+```json
+address: {
+    "line1": <str>,
+    "line2": <str/null>,
+    "city": <str>,
+    "state": <str>,
+    "postal_code": <str>,
+}
+
+```
