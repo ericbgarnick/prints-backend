@@ -12,3 +12,8 @@ class Customer(models.Model):
     # may differ from shipping address
     address = models.ForeignKey('geospatial.Address',
                                 on_delete=models.PROTECT)
+
+    def __str__(self) -> str:
+        return f"{self.first_name} {self.last_name} ({self.email})"
+
+    __repr__ = __str__

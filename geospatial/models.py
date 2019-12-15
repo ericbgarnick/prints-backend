@@ -15,7 +15,7 @@ class Address(models.Model):
     postal_code = models.CharField(max_length=10)
     country = models.CharField(choices=COUNTRY_NAMES, max_length=128)
 
-    def __str__(self):
+    def __str__(self) -> str:
         local = ('\n'.join([self.line1, self.line2])
                  if self.line2 else self.line1)
         region = f"{self.city}, {self.state} {self.postal_code}"
