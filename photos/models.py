@@ -8,3 +8,9 @@ class Photo(models.Model):
     title = models.CharField(max_length=256)
     shot_date = models.DateField()
     max_prints = models.PositiveIntegerField()
+
+    def __str__(self) -> str:
+        date = self.shot_date.strftime('%Y/%m/%d')
+        return f"\"{self.title}\" ({date})"
+
+    __repr__ = __str__
