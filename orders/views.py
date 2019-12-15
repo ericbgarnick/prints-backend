@@ -156,14 +156,22 @@ class PrintOrder(APIView):
         size_info_cache = {s.value.upper(): {"base_price": bp, "ship_price": sp}
                            for s, bp, sp in print_size_info}
         for print_data in prints_data:
-            image_title = Photo.objects.get(image_id=print_data["image_id"]).title
-            size = print_data["size"]
-            base_price = size_info_cache[size]["base_price"]
-            ship_price = size_info_cache[size]["ship_price"]
-            prints_summary.append({
-                "image_title": image_title,
-                "size": size,
-                "base_price_cents": base_price,
-                "ship_price_cents": ship_price
-            })
+            PrintOrder._add_single_print(print_data,
+                                         size_info_cache,
+                                         prints_summary)
         billing_summary["prints"] = prints_summary
+
+    @staticmethod
+    def _add_single_print(print_data: Dict, size_info_cache: Dict,
+                          prints_summary: List[Dict]):
+        """Add dict for print_data to prints_summary."""
+        image_title = Photo.objects.get(image_id=print_data["image_id"]).title
+        size = print_data["size"]
+        base_price = size_info_cache[size]["base_price"]
+        ship_price = size_info_cache[size]["ship_price"]
+        prints_summary.append({
+            "image_title": image_title,
+            "size": size,
+            "base_price_cents": base_price,
+            "ship_price_cents": ship_price
+        })

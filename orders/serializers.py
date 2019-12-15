@@ -24,6 +24,7 @@ class PaymentSerializer(serializers.ModelSerializer):
                   'billing_last_name', 'billing_address']
 
     def is_valid(self, raise_exception=False):
+        # Get values from self.initial_data
         method = self.initial_data.get('method')
         network = self.initial_data.get('credit_network')
         acct_num = self.initial_data.get('account_number')
@@ -37,13 +38,17 @@ class PaymentSerializer(serializers.ModelSerializer):
         self._errors = []
         self._validated_data = self.initial_data
 
+        # Validate data
         enum_from_str(method, PaymentMethod, self._errors)
         enum_from_str(network, CreditNetwork, self._errors)
+
         check_numeric_string(acct_num, Payment, 'account_number', self._errors)
         check_numeric_string(card_exp, Payment, 'card_expiration', self._errors)
         check_numeric_string(card_cvv, Payment, 'card_cvv', self._errors)
+
         check_str_length(billing_first_name, Payment, 'billing_first_name', self._errors)
         check_str_length(billing_last_name, Payment, 'billing_last_name', self._errors)
+
         addr_serializer = AddressSerializer(data=billing_addr)
         if not addr_serializer.is_valid():
             self._errors.append(f"Invalid address data {billing_addr}")
