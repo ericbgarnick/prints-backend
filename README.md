@@ -1,10 +1,10 @@
-# sure-prints
+# prints-backend
 
 APIs for a photo website allowing display of photos and ordering of prints of photos
 
 ## Installation
 
-* Clone the Git repository https://github.com/ericbgarnick/sure-prints.git
+* Clone the Git repository https://github.com/ericbgarnick/prints-backend.git
 * Create virtualenv
 * Install requirements from requirements.txt
 
