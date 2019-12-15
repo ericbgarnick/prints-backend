@@ -45,7 +45,7 @@ python manage.py test
 
 ## TODOs
 There were many cut corners in development of this project that I would fix if producing a usable product.  These include:
-* `__str__`/`__repr__` methods for all models
+* Filling out Order and Payment models with payment amount and ordered prints
 * More thorough unit tests covering more edge cases (some unit tests were not completed for the PrintOrder view class)
 * More logic abstraction (there is some unnecessarily duplicated logic left in)
 * More error handling
