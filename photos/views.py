@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 
 from photos.models import Photo
 from photos.serializers import PhotoSerializer
+from photos.utils import OrderBy, ordered_photos
 
 
 class PhotoCatalog(APIView):
@@ -40,8 +41,11 @@ class PhotoCatalog(APIView):
     """
     paginator = PageNumberPagination()
 
+    DEFAULT_ORDER = OrderBy.SHOT_DATE.value
+
     def get(self, request: WSGIRequest):
-        photos = Photo.objects.all().order_by('-shot_date')
+        order_by = request.GET.get('order_by', self.DEFAULT_ORDER)
+        photos = ordered_photos(order_by)
         if request.GET.get('page'):
             page = self.paginator.paginate_queryset(photos, request)
             serializer = PhotoSerializer(page, many=True)

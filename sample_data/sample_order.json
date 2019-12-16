@@ -1,7 +1,7 @@
 {
   "customer": {
-    "first_name": "Eric",
-    "last_name": "Garnick",
+    "first_name": "Test",
+    "last_name": "Mctest",
     "email": "eric@email.com",
     "phone": "+12223334444",
     "address": {
@@ -24,6 +24,66 @@
   "prints": [
     {
       "image_id": 1,
+      "size": "SMALL"
+    },
+    {
+      "image_id": 2,
+      "size": "MEDIUM"
+    },
+    {
+      "image_id": 3,
+      "size": "LARGE"
+    },
+    {
+      "image_id": 4,
+      "size": "SMALL"
+    },
+    {
+      "image_id": 5,
+      "size": "MEDIUM"
+    },
+    {
+      "image_id": 6,
+      "size": "LARGE"
+    },
+    {
+      "image_id": 7,
+      "size": "SMALL"
+    },
+    {
+      "image_id": 8,
+      "size": "MEDIUM"
+    },
+    {
+      "image_id": 9,
+      "size": "LARGE"
+    },
+    {
+      "image_id": 10,
+      "size": "SMALL"
+    },
+    {
+      "image_id": 12,
+      "size": "MEDIUM"
+    },
+    {
+      "image_id": 13,
+      "size": "LARGE"
+    },
+    {
+      "image_id": 11,
+      "size": "SMALL"
+    },
+    {
+      "image_id": 24,
+      "size": "MEDIUM"
+    },
+    {
+      "image_id": 34,
+      "size": "LARGE"
+    },
+    {
+      "image_id": 14,
       "size": "SMALL"
     },
     {
